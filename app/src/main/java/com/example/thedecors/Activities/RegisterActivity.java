@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validation() {
-        Boolean status = true;
+        boolean status = true;
         // Get user input
         enteredUsername = et1.getText().toString();
         enteredPhoneNumber = et2.getText().toString();
@@ -52,22 +52,22 @@ public class RegisterActivity extends AppCompatActivity {
         enteredConfirmPassword = et5.getText().toString();
 
         if (enteredUsername.isEmpty()){
-            et1.setError("Name is Empty");
+            et1.setError("Field is Empty");
             et1.requestFocus();
             status=false;
         }
         else if (enteredPhoneNumber.isEmpty()) {
-            et2.setError("Phone number is empty");
+            et2.setError("Field is empty");
             et2.requestFocus();
             status=false;
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(enteredEmailID).matches()) {
-            et3.setError("Enter the valid email address");
+            et3.setError("Enter a valid email ID");
             et3.requestFocus();
             status=false;
         }
         else if (enteredPassword.isEmpty()) {
-            et4.setError("Enter the password");
+            et4.setError("Field is Empty");
             et4.requestFocus();
             status=false;
         }
@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
             status=false;
         }
         else if (enteredConfirmPassword.isEmpty()) {
-            et5.setError("Enter the password");
+            et5.setError("Field is Empty");
             et5.requestFocus();
             status=false;
         }
@@ -97,9 +97,9 @@ public class RegisterActivity extends AppCompatActivity {
     private void registration() {
 
         // Initialize SharedPreferences & Store user data in SharedPreferences
-        sharedPreferences = getSharedPreferences(enteredUsername, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(enteredPhoneNumber, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", enteredUsername);
+        editor.putString("username", enteredPhoneNumber);
         editor.putString("password", enteredConfirmPassword);
         editor.putString("email", enteredEmailID);
         editor.apply();
