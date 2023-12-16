@@ -5,6 +5,11 @@ public class ItemModel {
     private int itemId;
     private String itemName;
 
+    public ItemModel(int itemId, String itemName) {
+        this.itemId = itemId;
+        this.itemName = itemName;
+    }
+
     public int getItemId() {
         return itemId;
     }

@@ -7,11 +7,9 @@
     android:orientation="vertical"
     tools:context=".Activities.ProductsActivity">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="#F8F6F6"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -23,6 +21,12 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
-    </LinearLayout>
+    </LinearLayout>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F4F4"/>
 
 </LinearLayout>

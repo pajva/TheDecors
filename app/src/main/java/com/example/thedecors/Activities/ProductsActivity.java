@@ -2,6 +2,8 @@ package com.example.thedecors.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,18 +14,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.thedecors.Adapters.ItemAdapter;
+import com.example.thedecors.Interfaces.OnItemClickListener;
+import com.example.thedecors.Models.ItemModel;
 import com.example.thedecors.R;
 
-public class ProductsActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductsActivity extends AppCompatActivity implements OnItemClickListener {
 
     SharedPreferences sharedPreferences;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
-        setTitle("Home");
+        setTitle("Products");
         sharedPreferences = getSharedPreferences("Common", Context.MODE_PRIVATE);
+        // Create a list of items
+        List<ItemModel> itemList = new ArrayList<>();
+        itemList.add(new ItemModel(R.drawable.patio,"Garden Table"));
+        itemList.add(new ItemModel(R.drawable.bedcover,"King Size Bed Cover"));
+
+        // Set up RecyclerView
+        recyclerView = findViewById(R.id.rv1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ItemAdapter itemAdapter = new ItemAdapter(itemList,this);
+        recyclerView.setAdapter(itemAdapter);
     }
 
     @Override
@@ -46,5 +65,15 @@ public class ProductsActivity extends AppCompatActivity {
             editor.apply();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(int position,ItemModel item) {
+        // Handle item click, for example, start a new activity with item details
+        Intent intent = new Intent(this, ProductDetailsActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("itemName", item.getItemName());
+        intent.putExtra("itemID", item.getItemId());
+        startActivity(intent);
     }
 }

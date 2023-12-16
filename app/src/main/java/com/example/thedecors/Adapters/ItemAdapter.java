@@ -4,11 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.thedecors.Interfaces.OnItemClickListener;
 import com.example.thedecors.Models.ItemModel;
 import com.example.thedecors.R;
 import com.squareup.picasso.Picasso;
@@ -18,9 +20,11 @@ import java.util.List;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     private List<ItemModel> itemList;
+    private OnItemClickListener onItemClickListener;
 
-    public ItemAdapter(List<ItemModel> itemList) {
+    public ItemAdapter(List<ItemModel> itemList,OnItemClickListener onItemClickListener) {
         this.itemList = itemList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -39,9 +43,18 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         // Load and display the image using Glide (or your preferred image loading library)
         Picasso.get()
                 .load(item.getItemId())
-                .placeholder(R.drawable.logo) // Placeholder image while loading
-                .error(R.drawable.patio) // Error image if loading fails
+                .placeholder(R.drawable.baseline_nothing_24) // Placeholder image while loading
+                .error(R.drawable.baseline_error_outline_24) // Error image if loading fails
                 .into(holder.iv1);
+
+        holder.ll1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(holder.getBindingAdapterPosition(),item);
+                }
+            }
+        });
     }
 
     @Override
@@ -53,11 +66,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         private TextView tv1;
         private ImageView iv1;
+        private LinearLayout ll1;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv1 = itemView.findViewById(R.id.tv1);
             iv1 = itemView.findViewById(R.id.iv1);
+            ll1 = itemView.findViewById(R.id.ll1);
         }
     }
 }
