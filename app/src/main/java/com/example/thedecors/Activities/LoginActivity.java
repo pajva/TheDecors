@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tv1,tv2;
     private Button bt1;
     private String enteredUsername,enteredPassword;
-    private SharedPreferences sharedPreferences,sharedPreferencesCommon;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +92,15 @@ public class LoginActivity extends AppCompatActivity {
         // Check if entered credentials match stored credentials
         if (enteredUsername.equals(storedUsername) && enteredPassword.equals(storedPassword)) {
             Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-            // Redirect or perform other actions after successful login
 
-            sharedPreferencesCommon = getSharedPreferences("Common",Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferencesCommon.edit();
+            sharedPreferences = getSharedPreferences("Common",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("status", true);
             editor.apply();
 
             // For example, you can start a new activity:
             Intent intent = new Intent(this, ProductsActivity.class);
+            intent.putExtra("loggedUser", enteredUsername);
             startActivity(intent);
             finish();
         } else {

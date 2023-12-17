@@ -26,13 +26,27 @@ public class ProductsActivity extends AppCompatActivity implements OnItemClickLi
 
     SharedPreferences sharedPreferences;
     RecyclerView recyclerView;
+    String logUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
         setTitle("Products");
-        sharedPreferences = getSharedPreferences("Common", Context.MODE_PRIVATE);
+
+        Intent intent = getIntent();
+        logUser = intent.getStringExtra("loggedUser");
+        sharedPreferences = getSharedPreferences("Person", Context.MODE_PRIVATE);
+        if (logUser!=null){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("loggedUser",logUser);
+            editor.apply();
+        }
+        logUser = sharedPreferences.getString("loggedUser", "");
+        Log.e("PRODUCTSUSERshared", sharedPreferences.getString("loggedUser", ""));
+        Log.e("PRODUCTSUSER", logUser);
+
+
         // Create a list of items
         List<ItemModel> itemList = new ArrayList<>();
         itemList.add(new ItemModel(R.drawable.patio,"Garden Table"));
@@ -60,6 +74,7 @@ public class ProductsActivity extends AppCompatActivity implements OnItemClickLi
             Toast.makeText(this, "Logged out Successfully", Toast.LENGTH_SHORT).show();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
+            sharedPreferences = getSharedPreferences("Common", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("status", false);
             editor.apply();
@@ -74,6 +89,7 @@ public class ProductsActivity extends AppCompatActivity implements OnItemClickLi
         intent.putExtra("position", position);
         intent.putExtra("itemName", item.getItemName());
         intent.putExtra("itemID", item.getItemId());
+        intent.putExtra("loggedUser", logUser);
         startActivity(intent);
     }
 }
