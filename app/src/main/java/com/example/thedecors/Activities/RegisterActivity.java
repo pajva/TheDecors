@@ -42,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    //validation for registration
     private boolean validation() {
         boolean status = true;
         // Get user input
@@ -95,7 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registration() {
-
         // Initialize SharedPreferences & Store user data in SharedPreferences
         sharedPreferences = getSharedPreferences(enteredPhoneNumber, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

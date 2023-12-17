@@ -65,6 +65,7 @@ public class ProductsActivity extends AppCompatActivity implements OnItemClickLi
         return true;
     }
 
+    //optionsMenu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -82,6 +83,7 @@ public class ProductsActivity extends AppCompatActivity implements OnItemClickLi
         return super.onOptionsItemSelected(item);
     }
 
+    //item click for adapter items
     @Override
     public void onItemClick(int position,ItemModel item) {
         // Handle item click, for example, start a new activity with item details

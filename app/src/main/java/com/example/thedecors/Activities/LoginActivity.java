@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+    //validation for login
     private void validation() {
         Boolean status = true;
         // Get user input
@@ -75,13 +77,13 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //Check the presence of SP
     private boolean isSharedPreferencesPresent(String preferenceName) {
         SharedPreferences sharedPreferences = getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
         return sharedPreferences.getAll().size() > 0;
     }
 
     private void login() {
-
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences(enteredUsername, Context.MODE_PRIVATE);
 

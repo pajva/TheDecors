@@ -10,15 +10,23 @@
     android:orientation="vertical"
     tools:context=".Activities.LoginActivity">
 
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:src="@drawable/home"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="THEDECORS"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         android:textSize="35dp"
         android:textStyle="bold"
-        android:textColor="@color/purple_500"/>
+        android:textColor="#713C03"/>
 
     <LinearLayout
         android:layout_width="match_parent"

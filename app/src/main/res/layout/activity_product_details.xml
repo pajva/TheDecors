@@ -49,4 +49,18 @@
         android:isIndicator="false"
         />
 
+    <EditText
+        android:id="@+id/etpd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Comments Please"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btpd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send"
+        android:layout_gravity="center"/>
+
 </LinearLayout>
